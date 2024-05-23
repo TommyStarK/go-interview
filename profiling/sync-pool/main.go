@@ -18,8 +18,6 @@ var (
 			return new(bytes.Buffer)
 		},
 	}
-	style   = []byte("<h1 style='color: ")
-	welcome = []byte(">Welcome!</h1>You are visitor number ")
 )
 
 func handleHi(w http.ResponseWriter, r *http.Request) {
@@ -31,9 +29,9 @@ func handleHi(w http.ResponseWriter, r *http.Request) {
 	buf := bufPool.Get().(*bytes.Buffer)
 	defer bufPool.Put(buf)
 	buf.Reset()
-	w.Write(style)
+	buf.WriteString("<h1 style='color: ")
 	buf.WriteString(r.FormValue("color"))
-	w.Write(welcome)
+	buf.WriteString(">Welcome!</h1>You are visitor number ")
 	b := strconv.AppendInt(buf.Bytes(), int64(visitNumber), 10)
 	b = append(b, '!')
 	w.Write(b)
