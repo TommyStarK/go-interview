@@ -1,4 +1,4 @@
 # beginner
 
-no net package
-no regexp package
+- no net package
+- no regexp package

@@ -11,14 +11,12 @@ func pow(o, p int) int {
 	for i := 0; i < p; i++ {
 		tmp *= o
 	}
-
 	return tmp
 }
 
 func solution(code string) string {
 	strs := make([]string, 0, int(len(code)/8))
 	tmp := make([]int, 0, int(len(code)/8))
-
 	var b bytes.Buffer
 	for i := range code {
 		b.WriteByte(code[i])
@@ -27,7 +25,6 @@ func solution(code string) string {
 			b.Reset()
 		}
 	}
-
 	for _, s := range strs {
 		byt := 0
 		for i := len(s) - 1; i >= 0; i-- {
@@ -35,15 +32,12 @@ func solution(code string) string {
 				byt += pow(2, 7-i)
 			}
 		}
-
 		tmp = append(tmp, byt)
 	}
-
 	res := make([]byte, 0, len(tmp))
 	for _, current := range tmp {
 		res = append(res, byte(current))
 	}
-
 	return string(res)
 }
 
